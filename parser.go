@@ -47,7 +47,8 @@ func (p *Parser) mapToPackage(m map[string]string) (Package, error) {
 		case "Package":
 			pkg.Package = value
 		case "Version":
-			pkg.Version = value
+			valueSplit := strings.Split(value, " ")
+			pkg.Version = valueSplit[0]
 		case "Section":
 			pkg.Section = value
 		case "Installed-Size":
