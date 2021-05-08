@@ -116,6 +116,24 @@ Description: GCC Quad-Precision Math Library
  targets the REAL(16) type in the GNU Fortran compiler.
 Homepage: http://gcc.gnu.org/
 
+Package: netbase
+Status: install ok installed
+Priority: important
+Section: admin
+Installed-Size: 44
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Architecture: all
+Multi-Arch: foreign
+Version: 5.4
+Conffiles:
+ /etc/protocols bb9c019d6524e913fd72441d58b68216
+ /etc/rpc f0b6f6352bf886623adc04183120f83b
+ /etc/services 567c100888518c1163b3462993de7d47
+Description: Basic TCP/IP networking system
+ This package provides the necessary infrastructure for basic TCP/IP based
+ networking.
+Original-Maintainer: Marco d'Itri <md@linux.it>
+
 Package: libedit2
 Status: install ok installed
 Priority: standard
@@ -139,8 +157,8 @@ Homepage: http://www.thrysoee.dk/editline/`
 	parser := NewParser(reader)
 	packages := parser.Parse()
 
-	if len(packages) != 2 {
-		t.Errorf("Expected 2 packages, got: %v", len(packages))
+	if len(packages) != 3 {
+		t.Errorf("Expected 3 packages, got: %v", len(packages))
 	}
 
 	pkg := packages[0]
@@ -159,8 +177,19 @@ Homepage: http://www.thrysoee.dk/editline/`
 	if pkg.InstalledSize != 275 {
 		t.Errorf("Incorrect size: %v", pkg.InstalledSize)
 	}
-
 	pkg = packages[1]
+	assertEqual(t, "netbase", pkg.Package)
+	assertEqual(t, "5.4", pkg.Version)
+	assertEqual(t, "admin", pkg.Section)
+	assertEqual(t, "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>", pkg.Maintainer)
+	assertEqual(t, "install ok installed", pkg.Status)
+	assertEqual(t, "all", pkg.Architecture)
+	assertEqual(t, "foreign", pkg.MultiArch)
+	assertEqual(t, "important", pkg.Priority)
+	if pkg.InstalledSize != 44 {
+		t.Errorf("Incorrect size: %v", pkg.InstalledSize)
+	}
+	pkg = packages[2]
 	assertEqual(t, "libedit2", pkg.Package)
 	assertEqual(t, "3.1-20140620-2", pkg.Version)
 	assertEqual(t, "libs", pkg.Section)
