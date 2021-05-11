@@ -1,4 +1,4 @@
-projectSourcePath := github.com/tadasv/go-dpkg
+projectSourcePath := github.com/kenael/go-dpkg
 dockerMountPath := /go/src/$(projectSourcePath)
 
 docker-shell:

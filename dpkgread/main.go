@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/tadasv/go-dpkg"
+	"github.com/kenael/go-dpkg"
 	"os"
 )
 
