@@ -19,6 +19,11 @@ type Package struct {
 	Description   string
 	Source        string
 	Homepage      string
+	Recommends    string
+	Suggests      string
+	Conffiles     string
+	OriginalMaintainer string
+
 }
 
 func ReadPackagesFromFile(fileName string) ([]Package, error) {

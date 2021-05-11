@@ -5,6 +5,8 @@ import (
 	"io"
 	"strconv"
 	"strings"
+	"fmt"
+	"regexp"
 )
 
 type Parser struct {
@@ -20,15 +22,18 @@ func NewParser(r io.Reader) *Parser {
 func (p *Parser) parseLine(line string) (string, string) {
 	// returns (key, value) or ("", value) if multi-line value
 	line = strings.TrimRight(line, "\n")
-
+	fmt.Println(line)
 	if len(line) == 0 {
 		return "", ""
 	}
 
-	if line[0] == ' ' {
+	// if line[0] == ' ' {
+	// 	return "", line
+	// }
+	_, err := regexp.Match(`^[[:blank:]]+`, []byte(line))
+	if err == nil {
 		return "", line
 	}
-
 	separatorIndex := strings.Index(line, ":")
 	key := line[0:separatorIndex]
 	value := line[separatorIndex+1 : len(line)]
@@ -76,6 +81,14 @@ func (p *Parser) mapToPackage(m map[string]string) (Package, error) {
 			pkg.Homepage = value
 		case "Priority":
 			pkg.Priority = value
+		case "Recommends":
+			pkg.Recommends = value
+		case "Suggests":
+			pkg.Suggests = value
+		case "Conffiles":
+			pkg.Conffiles = value
+		case "Original-Maintainer":
+			pkg.OriginalMaintainer = value
 		}
 	}
 
