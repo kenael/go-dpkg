@@ -114,6 +114,7 @@ Description: GCC Quad-Precision Math Library
  A library, which provides quad-precision mathematical functions on targets
  supporting the __float128 datatype. The library is used to provide on such
  targets the REAL(16) type in the GNU Fortran compiler.
+  * Example Test Entry (Ubuntu Style)
 Homepage: http://gcc.gnu.org/
 
 Package: netbase
@@ -151,7 +152,9 @@ Description: BSD editline and history libraries
  history, and tokenization functions.
  .
  It slightly resembles GNU readline.
-Homepage: http://www.thrysoee.dk/editline/`
+Homepage: http://www.thrysoee.dk/editline/
+
+`
 
 	reader := bytes.NewBufferString(data)
 	parser := NewParser(reader)

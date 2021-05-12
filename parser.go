@@ -27,13 +27,11 @@ func (p *Parser) parseLine(line string) (string, string) {
 		return "", ""
 	}
 
-	// if line[0] == ' ' {
-	// 	return "", line
-	// }
-	_, err := regexp.Match(`^[[:blank:]]+`, []byte(line))
-	if err == nil {
+	matched, _ := regexp.MatchString(`^[[:space:]]+`, line)
+	if matched == true {
 		return "", line
 	}
+
 	separatorIndex := strings.Index(line, ":")
 	key := line[0:separatorIndex]
 	value := line[separatorIndex+1 : len(line)]
