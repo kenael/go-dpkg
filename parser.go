@@ -22,7 +22,6 @@ func NewParser(r io.Reader) *Parser {
 func (p *Parser) parseLine(line string) (string, string) {
 	// returns (key, value) or ("", value) if multi-line value
 	line = strings.TrimRight(line, "\n")
-	fmt.Println(line)
 	if len(line) == 0 {
 		return "", ""
 	}
